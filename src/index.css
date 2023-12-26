@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+* {
+    font-family: 'Space Grotesk';
+    @apply transition-colors duration-300;
+}
+
+/* body {
+    background: #080808 !important;
+    color: white;
+    @apply dark:bg-[#080808] dark:text-white;
+} */
+
+.flex-center {
+    @apply flex items-center justify-center;
+}
+
+.flex-y-center {
+    @apply flex items-center;
+}
+
+.clip-1 {
+    /* clip-path: polygon(49% 0, 100% 0%, 54% 100%, 0 100%) ; */
+    /* clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%); */
+    /* clip-path: polygon(0% 0%, 10% 0%, 10% 100%, 20% 100%, 20% 0%, 30% 0%, 30% 100%, 40% 100%, 40% 0%, 50% 0%, 50% 100%, 60% 100%, 60% 0%, 70% 0%, 70% 100%, 80% 100%, 80% 0%, 90% 0%, 90% 100%, 100% 100%, 100% 0%, 100% 10%, 0% 10%, 0% 20%, 100% 20%, 100% 30%, 0% 30%, 0% 40%, 100% 40%, 100% 50%, 0% 50%, 0% 60%, 100% 60%, 100% 70%, 0% 70%, 0% 80%, 100% 80%, 100% 90%, 0% 90%, 0% 100%); */
+}
+
+.leaf {
+    width: 100px;
+    height: 100px;
+    border: 5px solid #32557f;
+}
+  
+.leaf-1 {
+    @extend .leaf;
+    border-radius: 0 100%;
+}
+  
+.leaf-2 {
+    @extend .leaf;
+    border-radius: 20% 10% 20% 5%;
+}
+
+.pear-1 {
+    border-radius: 48% 52% 50% 50% / 69% 68% 32% 31%;
+}
+
+.spacing {
+    @apply px-24 max-[1055px]:px-12 max-[550px]:px-6;
+}
+
+@layer components {
+
+    
+    .dark-text-outline, .text-outline {
+        -webkit-text-stroke: 1px #1c1c1c69;
+        color: transparent;
+        font-size: 60vh;
+        line-height: 1;
+        white-space: nowrap;
+        transform: rotate(12deg);
+    }
+
+    .reverse-rotate {
+        transform: rotate(-12deg) !important;
+    }
+
+    .text-outline {
+        -webkit-text-stroke: 1px #1616161b;
+    }
+
+    .grid-box {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(222px, 1fr));
+    }
+
+    .grid-box-200 {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .grid-box-120 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+.expand { 
+    width: calc(100% - 250px)
+}
+
+@media only screen and (max-width: 1150px) {
+    .expand {
+        width: 100%;
+    }
+}
