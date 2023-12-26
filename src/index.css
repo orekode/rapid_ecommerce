@@ -10,6 +10,10 @@
     @apply transition-colors duration-300;
 }
 
+:root {
+    @apply dark:bg-[#080808] dark:text-white;
+}
+
 /* body {
     background: #080808 !important;
     color: white;

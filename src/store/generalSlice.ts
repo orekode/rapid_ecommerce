@@ -22,7 +22,7 @@ const alertInit = {
     title: '',
     text: '',
     icon: '',
-    ok: () => {},
+    ok: undefined,
     cancel: undefined,
 };
 

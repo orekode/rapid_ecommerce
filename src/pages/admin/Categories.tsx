@@ -4,9 +4,11 @@ import { Input } from "@/components"
 import { Debounce } from "@/utils"
 import { Search } from "lucide-react"
 import { ChangeEvent, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 interface Category {
+    id: number | string,
     image: string,
     category: string,
 }
@@ -28,6 +30,8 @@ const Categories = () => {
 
     }
 
+    const navigate = useNavigate();
+
 
   return (
 
@@ -40,7 +44,6 @@ const Categories = () => {
             <Btn.Icon onClick={ () => refetch() } extraClass="bg-blue-600 text-white  rounded-lg">
                 <Search  />
             </Btn.Icon>
-            
         </div>
 
         <div className=" grid-box-200 min-[800px]:[&>*]:scale-90 max-[500px]:grid-cols-2 gap-3 py-6 ">
@@ -50,14 +53,14 @@ const Categories = () => {
                 </div>
             )}
 
-            {result && result.map( ({image, category } : Category , index: number) => 
+            {result && result.map( ({image, category, id } : Category , index: number) => 
                 <div key={index} className="scale">
-                    <Card.Pear image={image} title={category}/>
+                    <Card.Pear image={image} title={category} onClick={() => navigate('/admin/category/' + id)}  />
                 </div>
             )}
 
         </div>
-        <Empty load={data && data.length <= 0} />
+        <Empty load={result && result.length <= 0} />
 
     </div>
 

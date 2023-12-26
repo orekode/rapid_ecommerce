@@ -122,7 +122,7 @@ export const  Select = ({
                           <div onClick={() => currentPage > 1 ? setPage(currentPage - 1 ) : ""} className="prev hover:bg-blue-600 active:bg-yellowy text-white px-2 py-0.4 flex-grow h-10 flex-center border-r dark:border-neutral-600">prev</div>
 
                           {Array.from({length: pages < 5 ? pages : 5 }, (_, index) =>
-                            <div onClick={() => setPage(index + 1)} className={` ${index + 1 == currentPage ? 'bg-blue-600' : ''} hover:bg-blue-600 active:bg-yellowy border-r [&:last-of-type]:border-none flex-center h-10 w-10 dark:border-neutral-600 `}>
+                            <div key={index} onClick={() => setPage(index + 1)} className={` ${index + 1 == currentPage ? 'bg-blue-600' : ''} hover:bg-blue-600 active:bg-yellowy border-r [&:last-of-type]:border-none flex-center h-10 w-10 dark:border-neutral-600 `}>
                               {index + 1}
                             </div>
                           )}

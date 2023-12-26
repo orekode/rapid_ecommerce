@@ -18,6 +18,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+import LayoutThree from "./layouts/LayoutThree";
 
 
 function App() {
@@ -40,8 +41,11 @@ function App() {
           </Route>
 
           <Route path="/admin" element={ <LayoutTwo /> }>
-            <Route index              element={ <Admin.Dashboard /> } />
-            <Route path="categories"  element={ <Admin.Categories /> } />
+            <Route index                element={ <Admin.Dashboard  /> } />
+            <Route path="categories"    element={ <Admin.Categories /> } />
+            <Route element={ <LayoutThree /> }>
+              <Route path="category/:id"  element={ <Admin.Category   /> } />
+            </Route>
           </Route>
 
         </Route>

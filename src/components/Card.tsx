@@ -1,13 +1,13 @@
 
 
-import { motion } from "framer-motion"
+import { HTMLMotionProps, motion } from "framer-motion"
 import { Img } from "."
 import { Skeleton } from "@mui/material"
 
-export const Pear = ({ image="/images/laptop.png", title="Laptops" } : { image?: string, title?: string }) => {
+export const Pear = ({ image="/images/laptop.png", title="Laptops", ...props } : { image?: string, title?: string } & HTMLMotionProps<'div'>) => {
 
   return (
-    <motion.div whileTap={{scale: 0.85}} className="rounded  transition-all duration-150 text-center relative">
+    <motion.div whileTap={{scale: 0.85}} className="rounded  transition-all duration-150 text-center relative" {...props}>
         <div className="h-[200px] w-[200px] mx-auto max-[760px]:h-[120px] max-[760px]:w-[120px] hover:bg-blue-600 pear-1 overflow-hidden border dark:border-neutral-800 hover:border-blue-600 hover:shadow-xl active:shadow-none">
             <Img.Cover src={image} />
         </div>

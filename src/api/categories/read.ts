@@ -31,4 +31,23 @@ export const useCategories = ({search = "", page = 1} : { search?: string, page?
     })
 }
 
+export const useCategory = ({ id } : { id: number | string }) => {
+
+
+    return useQuery(['category', 'read', id ], async () => {
+        try {
+
+            let result: Record<string, any> = {};
+
+            result = await axios.get('/categories/' + id);
+
+            return result.data || result;
+
+        }
+        catch(error) {
+            console.log(error);
+            return [];
+        }
+    })
+}
 

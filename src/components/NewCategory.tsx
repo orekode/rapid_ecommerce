@@ -2,7 +2,10 @@ import { Backdrop, Btn, Input, Upload } from "@/components"
 import { ChangeEvent, useState } from "react"
 import CategorySelect from "./CategorySelect";
 import { useDispatch } from "react-redux";
-import { showAlert, startLoading, stopLoading } from "@/store/generalSlice";
+import { startLoading, stopLoading } from "@/store/generalSlice";
+import { createCategory } from "@/api/categories/create";
+import Swal from "sweetalert2";
+import { useQueryClient } from "react-query";
 
 const NewCategory = () => {
 
@@ -12,23 +15,52 @@ const NewCategory = () => {
 
     const dispatch = useDispatch();
 
+    const queryClient = useQueryClient();
+
     const handleSubmit = () => {
 
         dispatch(startLoading());
 
         if(!formData || !formData.image || !formData.name) {
 
-            dispatch(showAlert({
+            Swal.fire({
                 title: 'Empty Inputs',
                 text: 'Please provide a category image, category name and try again',
                 icon: 'error',
-            }));
+            });
 
+            dispatch(stopLoading());
+
+
+            return false;
         }
 
+        createCategory({
+            image: formData.image, 
+            name: formData.name, 
+            parent: formData.parent
+        }).then((result) => {
 
-        dispatch(stopLoading());
+            if(result[0]) {
+                Swal.fire({
+                    title: 'Category Created Successfully',
+                    icon: 'success',
+                }).then(() => {
+                    setShowForm(false);
+                    queryClient.invalidateQueries(["categories"]);
+                });
+            }
+            else {
+                Swal.fire({
+                    title: result[1],
+                    text: 'Please provide a unique category image, category name and try again',
+                    icon: 'error',
+                });
+                
+            }
 
+            dispatch(stopLoading());
+        });
 
 
     }
