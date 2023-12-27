@@ -21,13 +21,13 @@ const Moder = () => {
 
         { 
         mode == 'dark' ? 
-            <motion.div onClick={() => {  dispatch(toggle()); }} whileTap={{ scale: 0.85 }} className="flex-center border rounded-full p-1 dark:hover:text-yellowy dark:hover:border-yellowy">
-                <Sun />
+            <motion.div onClick={() => {  dispatch(toggle()); }} whileTap={{ scale: 0.85 }} className="flex-center border rounded-full p-0.5 dark:hover:text-yellowy dark:hover:border-yellowy">
+                <Sun size={15}/>
             </motion.div>
         :
 
-        <motion.div onClick={() => { dispatch(toggle()); }} whileTap={{ scale: 0.85 }} className="flex-center border rounded-full p-1 dark:hover:text-yellowy dark:hover:border-yellowy">
-            <Moon />
+        <motion.div onClick={() => { dispatch(toggle()); }} whileTap={{ scale: 0.85 }} className="flex-center border rounded-full p-0.5 dark:hover:text-yellowy dark:hover:border-yellowy">
+            <Moon size={15}/>
         </motion.div>
         }
 

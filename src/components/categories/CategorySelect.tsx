@@ -1,9 +1,9 @@
 import { useCategories } from "@/api/categories/read";
-import { Input } from ".";
+import { Input } from "..";
 import { useState } from "react"
 import { Debounce } from "@/utils";
 
-const CategorySelect = ({ onSelect = (x: any) => {x} }) => {
+const CategorySelect = ({ init,  onSelect = (x: any) => {x} } : { init?: any, onSelect?: any}) => {
 
     const [ search, setSearch ] = useState<string>("");
     const [ page, setPage ] = useState<number>(1)
@@ -34,6 +34,7 @@ const CategorySelect = ({ onSelect = (x: any) => {x} }) => {
                 pages={data?.meta?.last_page}
                 currentPage={page}
                 setPage={setPage}
+                init={init}
             />
         </div>
     )

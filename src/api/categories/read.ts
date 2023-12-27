@@ -31,6 +31,30 @@ export const useCategories = ({search = "", page = 1} : { search?: string, page?
     })
 }
 
+export const useSubCategories = ({ id, search="" } : { id: string | number, search?: string }) => {
+    return useQuery(['categories', 'sub-categories', id, search ], async() => {
+        try {
+            let result: Record<string, any> = {};
+            let params: Record<string, any> = {
+                identifier: id,
+            }
+
+            if(search.replaceAll(" ", "") !== "") {
+                params["name[in]"] = search;
+            }
+
+            result = await axios.get('/sub_categories', {params});
+
+            return result.data || result;
+        }
+        catch(error) {
+            console.log(error);
+            return [];
+        }
+
+    });
+}
+
 export const useCategory = ({ id } : { id: number | string }) => {
 
 

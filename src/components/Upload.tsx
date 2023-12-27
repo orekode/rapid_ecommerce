@@ -1,15 +1,19 @@
 import { ImagePlus } from "lucide-react"
-import { Btn, Img } from "."
+import { Img } from "."
 import { ChangeEvent, useRef, useState } from "react"
 
 
 
 
-export const Image = ({ onUpload = (x: FileList) => {x} } : { onUpload?: any }) => {
+export const Image = ({ init='' , onUpload = (x: FileList) => {x} } : { onUpload?: any, init?: string | File | null }) => {
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [ image , setImage ] = useState<string | null>('');
+    if(init instanceof File) {
+        init = URL.createObjectURL(init);
+    }
+
+    const [ image , setImage ] = useState<string | null>(init);
 
     const handleImage = (event: ChangeEvent<HTMLInputElement>) => {
 
@@ -32,7 +36,7 @@ export const Image = ({ onUpload = (x: FileList) => {x} } : { onUpload?: any }) 
         </div>
 
         <div className="absolute top-0 left-0 h-full w-full z-0">
-            {image && <Img.Cover src={image} />}
+            {(image && image.replaceAll(" ", "") !== '') && <Img.Cover src={image} />}
         </div>
     </div>
   )

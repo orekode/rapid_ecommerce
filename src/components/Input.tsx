@@ -30,7 +30,8 @@ export const  Select = ({
     placeholder, 
     filter=(item: Record<string, any >) => item, 
     onSelect=(x: Record<string, any >)=>{x}, 
-    onSearch=(search: string)=>{search} 
+    onSearch=(search: string)=>{search},
+    init,
   } 
   : 
   { 
@@ -40,7 +41,8 @@ export const  Select = ({
     setPage?: any,
     placeholder: string, filter?: any, 
     onSelect?: any , 
-    onSearch?: any 
+    onSearch?: any ,
+    init?: any
   }) => {
 
   const defaultValue = {
@@ -50,7 +52,11 @@ export const  Select = ({
 
   options = options ? options.map(filter) : options;
 
-  const [ selected, setSelected ] = React.useState<Record<string, any >>(defaultValue);
+  init = init ? options.filter( item => item.value == init ) : [];
+
+  init = init.length > 0 ? init[0] : defaultValue;
+
+  const [ selected, setSelected ] = React.useState<Record<string, any >>(init);
 
   const [open, setOpen] = React.useState<boolean>(false);
   
