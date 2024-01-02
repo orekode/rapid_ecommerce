@@ -52,9 +52,9 @@ export const  Select = ({
 
   options = options ? options.map(filter) : options;
 
-  init = init ? options.filter( item => item.value == init ) : [];
+  init = init ? options?.filter( item => item.value == init ) : [];
 
-  init = init.length > 0 ? init[0] : defaultValue;
+  init = init?.length > 0 ? init[0] : defaultValue;
 
   const [ selected, setSelected ] = React.useState<Record<string, any >>(init);
 

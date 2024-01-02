@@ -1,8 +1,14 @@
 import { useCategory } from "@/api/categories/read"
+import { useDispatch } from "react-redux";
+import { startLoading, stopLoading } from "@/store/generalSlice";
+import { updateCategory } from "@/api/categories/update";
+import Swal from "sweetalert2";
+import { useQueryClient } from "react-query";
 import { Btn, Card, CategoryForm, CategoryProducts, SubCategories } from "@/components"
 import { Trash } from "lucide-react"
 import { useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import { deleteCategory } from "@/api/categories/delete";
 
 const Category = () => {
 
@@ -14,7 +20,120 @@ const Category = () => {
 
     const { data } = useCategory({ id: category_id });
 
-    const result = data?.data
+    const result = data?.data;
+
+    const dispatch = useDispatch();
+
+    const queryClient = useQueryClient();
+
+    const navigate = useNavigate();
+
+    const invalidate_queries = () => {
+        queryClient.invalidateQueries(["categories"]);
+        queryClient.invalidateQueries(['category', 'read', category_id ]);
+        dispatch(stopLoading());
+
+    }
+
+    const handleSubmit = async (formData: Record<string, any>) => {
+
+        dispatch(startLoading());
+
+        if(!formData || !formData.image || !formData.name) {
+
+            Swal.fire({
+                title: 'Empty Inputs',
+                text: 'Please provide a category image, category name and try again',
+                icon: 'error',
+            });
+
+            dispatch(stopLoading());
+
+            return false;
+        }
+
+        const result = await updateCategory({
+            image: formData.image, 
+            name: formData.name, 
+            parent: formData.parent,
+            id: category_id,
+        });
+
+        if(result[0]) {
+
+            Swal.fire({
+                title: 'Category Updated Successfully',
+                icon: 'success',
+            })
+            
+        }
+        
+        else {
+            Swal.fire({
+                title: result[1],
+                text: 'Please provide a unique category image, category name and try again',
+                icon: 'error',
+            });
+
+            dispatch(stopLoading());
+
+            return false;
+            
+        }
+
+        invalidate_queries();
+
+        return true;
+
+    }
+
+    const handleDelete = async () => {
+
+        const cofirmation = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        });
+          
+         
+        if (!cofirmation.isConfirmed) return;
+
+        dispatch(startLoading());
+
+        const result = await deleteCategory({ id: category_id })
+
+        if(result[0]) {
+
+            Swal.fire({
+                title: 'Category Deleted Successfully',
+                icon: 'success',
+            })
+            
+        }
+        
+        else {
+            Swal.fire({
+                title: "Opps",
+                text: 'category cannot be deleted at this time, please contact "Rapid support" or try again later',
+                icon: 'error',
+            });
+
+            dispatch(stopLoading());
+
+            return false;
+            
+        }
+
+        invalidate_queries();
+
+        navigate(-1);
+
+        return true;
+    }
     
     return (
         <div>
@@ -36,12 +155,12 @@ const Category = () => {
                                     category: result.parent,
                                 }}
 
-                                callback={() => {}}
+                                callback={handleSubmit}
 
                                 btnText="Edit Category"
                             />
 
-                            <Btn.Icon extraClass="bg-red-600 h-[30px]">
+                            <Btn.Icon onClick={handleDelete} extraClass="bg-red-600 hover:bg-red-500 hover:border-red-500 h-[30px]">
                                 <Trash size={20} />
                             </Btn.Icon>
                         </div>
