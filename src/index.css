@@ -8,6 +8,7 @@
 * {
     font-family: 'Space Grotesk';
     @apply transition-colors duration-300;
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -60,7 +61,12 @@
 
 @layer components {
 
-    
+    .dark-stroke {
+        stroke: white;
+    }
+    .stroke {
+        stroke: #444;
+    }
     .dark-text-outline, .text-outline {
         -webkit-text-stroke: 1px #1c1c1c69;
         color: transparent;
@@ -88,9 +94,22 @@
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 
+    .grid-box-250 {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
     .grid-box-120 {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .table-item {
+        @apply  text-center max-[700px]:text-left p-1.5 w-[15%] border-r min-[700px]:flex items-center justify-center dark:border-neutral-800;
+    }
+
+    .img-cover {
+        @apply h-full w-full overflow-hidden object-cover
     }
 }
 
@@ -102,4 +121,13 @@
     .expand {
         width: 100%;
     }
+}
+
+
+.ql-editor {
+    min-height: 230px;
+}
+
+.ql-snow .ql-picker-options {
+    @apply dark:bg-black;
 }

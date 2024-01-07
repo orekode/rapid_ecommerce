@@ -6,7 +6,7 @@ import { ChangeEvent, useRef } from 'react'
 import { Btn, Input } from '.';
 import { Search } from 'lucide-react';
 
-export const Lg = ({ callback } : { callback: any }) => {
+export const Lg = ({ callback, placeholder="" } : { callback: any, placeholder?: string }) => {
 
     const inputRef = useRef<HTMLInputElement>();
 
@@ -30,7 +30,7 @@ export const Lg = ({ callback } : { callback: any }) => {
 
     return (
         <div className="search-box flex h-[50px] my-3 gap-1.5">
-            <Input.Base ref={inputRef} onChange={ handleSearch }/>
+            <Input.Base ref={inputRef} onChange={ handleSearch } placeholder={placeholder}/>
             <Btn.Icon onClick={ () => refetch() } extraClass="bg-blue-600 text-white  rounded-lg">
                 <Search  />
             </Btn.Icon>

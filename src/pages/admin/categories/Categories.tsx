@@ -22,7 +22,7 @@ const Categories = () => {
 
         <NewCategory />        
 
-        <Search.Lg callback={setSearch} />
+        <Search.Lg callback={setSearch} placeholder="Search categories here.."/>
 
         <CategoryGrid data={result} />
 

@@ -43,9 +43,14 @@ function App() {
           <Route path="/admin" element={ <LayoutTwo /> }>
             <Route index                element={ <Admin.Dashboard  /> } />
             <Route path="categories"    element={ <Admin.Categories /> } />
+            <Route path="products"      element={ <Admin.Products   /> } />
+
+            {/* for pages with the back button at the top */}
             <Route element={ <LayoutThree /> }>
               <Route path="category/:id"  element={ <Admin.Category   /> } />
+              <Route path="product/new"   element={ <Admin.Product   /> } />
             </Route>
+
           </Route>
 
         </Route>

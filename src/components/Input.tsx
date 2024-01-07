@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode, useEffect, useState, ChangeEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Backdrop, Empty } from '.';
@@ -12,12 +12,25 @@ export const Base = ({ extraClass=" flex-grow ",  ...props }) => {
     <input 
         placeholder="Search categories here.."
         type="text" 
-        className={` ${extraClass} bg-transparent input border-2 dark:border-neutral-700 outline outline-2 outline-neutral-500 dark:outline-neutral-900 rounded-lg px-3 py-1.5 `} 
+        className={` ${extraClass} bg-transparent input border-2 dark:border-neutral-700 outline outline-2 outline-gray-400 dark:outline-neutral-900 rounded-lg px-3 py-1.5 `} 
         {...props}
     />
 
   )
 
+}
+
+export const NativeSelect = ({ children, extraClass, ...props } : { children?: ReactNode , extraClass?: string}) => {
+  return (
+
+    <select
+      className={` ${extraClass} bg-transparent input border-2 dark:border-neutral-700 outline outline-2 outline-gray-400 dark:outline-neutral-900 rounded-lg px-3 py-2 dark:[&>option]:bg-black `} 
+      {...props}
+    >
+      {children}
+    </select>
+
+  )
 }
 
 
@@ -56,9 +69,9 @@ export const  Select = ({
 
   init = init?.length > 0 ? init[0] : defaultValue;
 
-  const [ selected, setSelected ] = React.useState<Record<string, any >>(init);
+  const [ selected, setSelected ] = useState<Record<string, any >>(init);
 
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   
 
   const handleClick = () => {
@@ -70,7 +83,7 @@ export const  Select = ({
     setOpen(false);
   };
 
-  React.useEffect( () => {
+  useEffect( () => {
     onSelect(selected)
   }, [selected]);
 
@@ -112,7 +125,7 @@ export const  Select = ({
             <motion.div initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}  className="w-[400px] max-[440px]:w-[300px] p-0.5 z-10">
                 <div className="bg-gray-100 dark:bg-neutral-900 shadow rounded-md overflow-hidden border dark:border-neutral-600 w-full">
                     <div className="border-b p-1.5 dark:border-neutral-600">
-                      <Base onChange={(event: React.ChangeEvent<HTMLInputElement> ) => onSearch(event.target.value)} extraClass='w-full border-none outline-none' />
+                      <Base onChange={(event: ChangeEvent<HTMLInputElement> ) => onSearch(event.target.value)} extraClass='w-full border-none outline-none' />
                     </div>
 
                     {options && 

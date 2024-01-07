@@ -1,10 +1,11 @@
-import { Btn, Card, Img, Scroll } from "@/components"
+import { Btn, CategoryScroll, Img, Scroll } from "@/components"
 import Accordion from "@/components/Accordion"
 import {  motion } from "framer-motion"
 import { ShoppingBag, Star } from "lucide-react"
 
 
 const Home = () => {
+
 
   return (
     <div className="">
@@ -48,11 +49,7 @@ const Home = () => {
 
       <section className="spacing pt-12 max-[550px]:pt-6 relative z-10">
 
-        <Scroll.TopBtns title={"Popular Categories"}>
-          {Array.from({length: 10}, (_, index) => 
-            <Card.Pear key={index} />
-          )}
-        </Scroll.TopBtns>
+        <CategoryScroll />
       </section>
 
       <section className="spacing pt-12">

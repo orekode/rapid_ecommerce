@@ -77,6 +77,7 @@ const LayoutTwo = () => {
         </div>
 
         <div className={` right ${menu ? 'expand' : 'w-full'} transition-all duration-300`}>
+
           <nav className="h-[60px] px-6 flex-y-center justify-between shadow w-full">
 
               <div onClick={() => setMenu(!menu)} className="menu-">
@@ -94,10 +95,13 @@ const LayoutTwo = () => {
 
           </nav>
 
-          <motion.div initial={{ height: 'calc( 100% - 60px )' }} animate={{ height: 'calc( 100% - 60px )' }} className="content-area overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-slate-400 dark:scrollbar-thumb-zinc-950 p-6">
-                  
-            <Outlet />
 
+          <motion.div initial={{ height: 'calc( 100% - 60px )' }} animate={{ height: 'calc( 100% - 60px )' }} className="content-area relative overflow-hidden">
+            <div className="overflow-y-scroll h-full scrollbar scrollbar-track-transparent scrollbar-thumb-slate-400 dark:scrollbar-thumb-zinc-950 p-6">
+                  
+              <Outlet />
+
+            </div>
           </motion.div>
         </div>
 

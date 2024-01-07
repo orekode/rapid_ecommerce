@@ -25,4 +25,5 @@ export { default as CategoryProducts       } from "./categories/CategoryProducts
 export { default as SubCategories          } from "./categories/SubCategories";
 export { default as CategorySelect         } from "./categories/CategorySelect";
 export { default as CategoryGrid           } from "./categories/CategoryGrid";
+export { default as CategoryScroll           } from "./categories/CategoryScroll";
 export { default as CategoryForm           } from "./categories/CategoryForm";
