@@ -44,11 +44,14 @@ function App() {
             <Route index                element={ <Admin.Dashboard  /> } />
             <Route path="categories"    element={ <Admin.Categories /> } />
             <Route path="products"      element={ <Admin.Products   /> } />
+            <Route path="tags"          element={ <Admin.Tags       /> } />
 
             {/* for pages with the back button at the top */}
             <Route element={ <LayoutThree /> }>
-              <Route path="category/:id"  element={ <Admin.Category   /> } />
-              <Route path="product/new"   element={ <Admin.Product   /> } />
+              <Route path="category/:id"  element={ <Admin.Category        /> } />
+              <Route path="product/new"   element={ <Admin.CreateProduct   /> } />
+              <Route path="products/:id"  element={ <Admin.UpdateProduct   /> } />
+              <Route path="tag/new"       element={ <Admin.CreateTag       /> } />
             </Route>
 
           </Route>

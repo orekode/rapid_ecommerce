@@ -2,16 +2,16 @@
 import axios from "@/api/config";
 import { AxiosError } from "axios";
 
-export const deleteCategory = async ({  id } : {  id: string | number }) => {
+export const updateProduct = async ({ formData, id } : { formData: Record<string, any>, id: number | string }) => {
 
     try {
 
-        const result = await axios.post(`/categories/${id}`, {}, {
+        const result = await axios.post(`/products/${id}`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             },
             params: {
-                "_method": "delete"
+                "_method" : "put"
             }
         });
 
@@ -24,9 +24,9 @@ export const deleteCategory = async ({  id } : {  id: string | number }) => {
         console.log(error);
 
         if(error instanceof AxiosError)
-            return [false, error.response?.data?.message]
+            return [false, error.response?.data?.errors]
 
-        return [false, "Unabe to Create Category"]
+        return [false, "Unabe to Create Product"]
     }
     
 }

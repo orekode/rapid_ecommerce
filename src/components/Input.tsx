@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState, ChangeEvent } from 'react';
+import { ReactNode, useEffect, useState, ChangeEvent, HtmlHTMLAttributes } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Backdrop, Empty } from '.';
@@ -20,7 +20,7 @@ export const Base = ({ extraClass=" flex-grow ",  ...props }) => {
 
 }
 
-export const NativeSelect = ({ children, extraClass, ...props } : { children?: ReactNode , extraClass?: string}) => {
+export const NativeSelect = ({ children, extraClass, ...props } : { children?: ReactNode , extraClass?: string} & HtmlHTMLAttributes<HTMLSelectElement>) => {
   return (
 
     <select
@@ -84,13 +84,14 @@ export const  Select = ({
   };
 
   useEffect( () => {
-    onSelect(selected)
+    if(selected.value != "")
+      onSelect(selected)
   }, [selected]);
 
  
 
   return (
-    <div className='relative z-[40] '>
+    <div className='relative  '>
       
       <div
         aria-controls={open ? 'basic-menu' : undefined}

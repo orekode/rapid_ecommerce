@@ -1,5 +1,5 @@
 import { Img, Mode } from "@/components";
-import { Home, Laptop, LayoutPanelLeft, LogOut, Settings, ShoppingBag, X } from "lucide-react";
+import { Home, Laptop, LayoutPanelLeft, LogOut, Settings, ShoppingBag, Tags, X, Zap } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -29,6 +29,18 @@ const LayoutTwo = () => {
         name: 'Categories',
         link: '/admin/categories',
         icon: <ShoppingBag strokeWidth={'1.35'}/>
+      },
+
+      {
+        name: 'Tags',
+        link: '/admin/tags',
+        icon: <Tags strokeWidth={'1.35'}/>
+      },
+
+      {
+        name: 'Brands',
+        link: '/admin/brands',
+        icon: <Zap strokeWidth={'1.35'}/>
       },
 
       {

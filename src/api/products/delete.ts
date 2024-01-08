@@ -2,11 +2,11 @@
 import axios from "@/api/config";
 import { AxiosError } from "axios";
 
-export const deleteCategory = async ({  id } : {  id: string | number }) => {
+export const deleteProduct = async ({  id } : {  id: string | number }) => {
 
     try {
 
-        const result = await axios.post(`/categories/${id}`, {}, {
+        const result = await axios.post(`/products/${id}`, {}, {
             headers: {
                 "Content-Type": "multipart/form-data"
             },

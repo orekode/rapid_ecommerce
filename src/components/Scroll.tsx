@@ -30,7 +30,7 @@ export const TopBtns = ({ children, title=""} : { children?: ReactNode, title?: 
         <div className="">
 
           <div ref={scrollRef} className="w-full overflow-x-scroll scrollbar-thin">
-            <div className="w-max flex items-center gap-6 py-12">
+            <div className="w-max flex  gap-6 py-12">
               {children}
             </div>
           </div>

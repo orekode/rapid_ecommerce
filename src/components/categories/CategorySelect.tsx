@@ -3,7 +3,7 @@ import { Input } from "..";
 import { useState } from "react"
 import { Debounce } from "@/utils";
 
-const CategorySelect = ({ init,  onSelect = (x: any) => {x} } : { init?: any, onSelect?: any}) => {
+const CategorySelect = ({ init,  onSelect = (x: any) => {x}, placeholder="Choose a parent category" } : { init?: any, onSelect?: any, placeholder?: string}) => {
 
     const [ search, setSearch ] = useState<string>("");
     const [ page, setPage ] = useState<number>(1)
@@ -26,7 +26,7 @@ const CategorySelect = ({ init,  onSelect = (x: any) => {x} } : { init?: any, on
     return (
         <div>
             <Input.Select 
-                placeholder="Choose a parent category"
+                placeholder={placeholder}
                 options={data?.data}
                 filter={ ({ category, id } : {category: string, id: number}) => ({label: category, value: id}) }
                 onSearch={handleSearch}
