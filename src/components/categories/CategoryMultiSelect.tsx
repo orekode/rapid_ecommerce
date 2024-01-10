@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 
 const CategoryMultiSelect = ({ init=[], onSelect = (x: any) => {x}, error="", placeholder="" } : { init?: Record<string, any>[], onSelect: any, error?: string, placeholder?: string }) => {
 
-    const [ categories, setCategories ] = useState<Record<string, any>[]>([]);
+    const [ categories, setCategories ] = useState<Record<string, any>[]>(init);
 
     const handleCategory = (record: Record<string, any>) => {
         let copy_categories: Record<string, any>[] = [];
@@ -28,8 +28,9 @@ const CategoryMultiSelect = ({ init=[], onSelect = (x: any) => {x}, error="", pl
     }
 
     useEffect(() => {
-        if(categories.length <= 0) setCategories(init);
+        if(categories.length <= 0 && init.length > 0) setCategories(init);
     }, [init]);
+
     useEffect(() => onSelect(categories), [categories]);
 
     return (

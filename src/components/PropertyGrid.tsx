@@ -6,7 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 
 const PropertyGrid = ({ init=[], callback = (x: any) => { x } }: { callback?: any, init: { title: string, value: string }[] }) => {
 
-    const [properties, setProperties] = useState<Array<Record<string, any>>>(init.length > 0 ? init : [{}]);
+    const [properties, setProperties] = useState<Array<Record<string, any>>>([]);
   
   
     const handleInsertProperty = (value: string, index: number, type = "title") => {
@@ -25,6 +25,7 @@ const PropertyGrid = ({ init=[], callback = (x: any) => { x } }: { callback?: an
     }, [properties])
 
     useEffect(() => {
+      if(properties.length <= 0)
       setProperties(init.length > 0 ? init : [{}]);
     }, [init])
   

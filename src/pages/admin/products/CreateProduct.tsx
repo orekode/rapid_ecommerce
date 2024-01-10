@@ -1,6 +1,7 @@
 import { createProduct } from "@/api/products/create";
 import { Input, Btn, Upload, Loading, CategoryMultiSelect } from "@/components"
 import PropertyGrid from "@/components/PropertyGrid";
+import { handleResponse } from "@/utils/General";
 
 import { ChangeEvent,  useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
@@ -35,29 +36,22 @@ const CreateProduct = () => {
     const result = await createProduct({ formData: {...formData, categories: formData?.categories?.map((item: { value: any; }) => item.value)} });
     setLoading(false);
 
-    if (result[0]) {
+    handleResponse({
+      response: result,
 
-      await Swal.fire({
-        icon: 'success',
-        title: "Product Created Successfully"
-      })
-
-      queryClient.invalidateQueries(["products"]);
-      navigate('/admin/products');
-      return true;
-    }
-
-    Swal.fire({
-      icon: "error",
-      title: "Unable To Create Product",
-      text: "please check your inputs and try again"
+      successTitle: "Product Created Successfully",
+      successCallback() {
+        queryClient.invalidateQueries(["products"]);
+        navigate('/admin/products');
+      },
+      
+      errorTitle: "Unable To Create Product",
+      errorText: "please check your inputs and try again",
+      errorCallback: setErrors
     });
-
-    setErrors(result[1]);
 
     document?.querySelector('.content-area > div')?.scrollTo(0,0);
 
-    console.log(result);
   }
 
 
