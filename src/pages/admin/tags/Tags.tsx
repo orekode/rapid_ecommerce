@@ -1,5 +1,5 @@
 import { useTags } from "@/api/tags/read";
-import { Btn, Search } from "@/components"
+import { Btn, Pagination, Search } from "@/components"
 import { Skeleton } from "@mui/material";
 import { Tag } from "lucide-react";
 import { useState } from "react";
@@ -32,12 +32,14 @@ const Tags = () => {
           )}
 
           {tags && tags.map((item: Record<string,any>, index: number) => 
-          <div key={index} className="hover:dark:bg-[#111] hover:bg-gray-50 active:scale-90 transition-all duration-200 rounded-md border dark:border-neutral-800 w-[200px] p-6 flex flex-col items-center justify-center text-center">
-            <Tag size={50}/>
-            <div className="mt-6">{item.name}</div>
-          </div>
+            <div key={index} className="hover:dark:bg-[#111] hover:bg-gray-50 active:scale-90 transition-all duration-200 rounded-md border dark:border-neutral-800 w-[200px] p-6 flex flex-col items-center justify-center text-center">
+              <Tag size={50}/>
+              <div className="mt-6">{item.name}</div>
+            </div>
           )}
+
         </div>
+        <Pagination meta={data?.meta} callback={setPage} />
         
       </div>
     )

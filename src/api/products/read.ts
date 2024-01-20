@@ -26,7 +26,7 @@ export const useProducts = ({ page=1 }) => {
 
 
 export const useProduct = ({ id }: { id: number | string }) => {
-    return useQuery(['products', id], async () => {
+    return useQuery(['product', 'read', id], async () => {
         try {
 
             const response = await axios.get(`/products/${id}`);

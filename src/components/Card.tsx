@@ -3,6 +3,7 @@
 import { HTMLMotionProps, motion } from "framer-motion"
 import { Img } from "."
 import { Skeleton } from "@mui/material"
+import { ReactNode } from "react"
 
 export const Pear = ({ image="/images/laptop.png", title="Laptops", ...props } : { image?: string, title?: string } & HTMLMotionProps<'div'>) => {
 
@@ -33,4 +34,11 @@ export const PearLoading = ({ load = true } : { load?: boolean }) => {
 
 }
 
-
+export const Box = ({ children, item } : {children: ReactNode, item: Record<string, any>}) => {
+  return (
+    <div className="hover:dark:bg-[#111] hover:bg-gray-50 active:scale-90 transition-all duration-200 rounded-md border dark:border-neutral-800 w-[200px] p-6 flex flex-col items-center justify-center text-center">
+      {children}
+      <div className="mt-6">{item.name}</div>
+    </div>
+  )
+}

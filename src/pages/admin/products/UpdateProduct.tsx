@@ -114,6 +114,9 @@ const UpdateProduct = () => {
     }
 
     queryClient.invalidateQueries(["products"]);
+    queryClient.invalidateQueries(["product"]);
+    queryClient.invalidateQueries(["read"]);
+    
     navigate(-1);
 
     return true;
