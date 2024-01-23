@@ -37,8 +37,10 @@ function App() {
         <Route element={ <Root /> }>
 
           <Route element={ <LayoutOne /> }>
-            <Route path="/" element={ <General.Home /> } />
+            <Route path="/"       element={ <General.Home /> } />
           </Route>
+          
+          <Route path="/shop"   element={ <General.Shop /> } />
 
           <Route path="/admin" element={ <LayoutTwo /> }>
             <Route index                element={ <Admin.Dashboard  /> } />

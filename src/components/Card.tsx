@@ -4,6 +4,7 @@ import { HTMLMotionProps, motion } from "framer-motion"
 import { Img } from "."
 import { Skeleton } from "@mui/material"
 import { ReactNode } from "react"
+import { ShoppingBag, Star } from "lucide-react"
 
 export const Pear = ({ image="/images/laptop.png", title="Laptops", ...props } : { image?: string, title?: string } & HTMLMotionProps<'div'>) => {
 
@@ -41,4 +42,44 @@ export const Box = ({ children, item } : {children: ReactNode, item: Record<stri
       <div className="mt-6">{item.name}</div>
     </div>
   )
+}
+
+export const Product = () => {
+  return (
+    <div className="relative group">
+        <div className="w-full h-[300px] max-[550px]:h-[220px] max-[360px]:h-[170px] overflow-hidden relative border dark:border-neutral-800 rounded">
+          <div className="h-full w-full">
+            <Img.Contain src='/images/laptop.png' />
+          </div>
+
+          <div className="transition-all duration-300 absolute -bottom-52 group-hover:bottom-2 left-0 w-full px-2 flex items-center gap-2 z-10">
+            
+            <motion.div whileTap={{ scale: 0.85 }} className="bg-blue-600 text-white text-sm max-[360px]:text-xs px-3 py-1.5 rounded flex-grow text-center">
+              Buy Now
+            </motion.div>
+
+            <motion.div whileTap={{ scale: 0.85 }} className="flex-center ">
+              <ShoppingBag />
+            </motion.div>
+            
+          </div>
+        </div>
+
+        <div className="details py-1.5">
+          <div className="name max-[550px]:text-sm max-[360px]:text-xs hover:text-blue-300 active:text-yellow-200 underline">ThinkVision 23.8 inch Monitor - T24i-30</div>
+          <div className="flex gap-1 py-1 text-yellowy">
+
+            {Array.from({length: 5}, (_, index) => 
+              <Star fill="#ffa436" key={index} size={15}/>
+            )}
+
+          </div>
+
+          <div className="max-[550px]:text-sm max-[360px]:text-xs top-2 left-2 absolute bg-white dark:bg-[#222] group-hover:bg-blue-600 shadow px-3 py-1.5 rounded-full">
+            Ghc 3450
+          </div>
+
+        </div>
+    </div>
+  );
 }

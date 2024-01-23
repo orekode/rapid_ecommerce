@@ -7,6 +7,7 @@ export * as Card    from "./Card";
 export * as Input   from "./Input";
 export * as Upload  from "./Upload";
 export * as Search  from "./Search";
+export * as Logo    from "./Logo";
 
 export { default as Nav             } from "./Nav";
 export { default as Bg              } from "./Bg";

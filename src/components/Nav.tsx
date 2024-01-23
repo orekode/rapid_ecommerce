@@ -1,8 +1,8 @@
 import { ShoppingBag, X } from 'lucide-react';
-import { Btn, Img, Mode } from '.';
+import { Btn, Logo, Mode } from '.';
 import {  motion } from 'framer-motion';
 import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 
 
 const Nav = () => {
@@ -12,12 +12,12 @@ const Nav = () => {
     const navs = [
         {
           name: 'Home',
-          link: {},
+          link: '/',
         },
     
         {
           name: 'Shop',
-          link: {},
+          link: '/shop',
         },
     
         {
@@ -33,15 +33,13 @@ const Nav = () => {
   return (
     <>
       <nav className="min-h-[60px] py-3 px-24 max-[1055px]:px-12 max-[550px]:px-6 flex-y-center justify-between fixed w-full z-50 mx-auto max-w-[1224px] backdrop-blur-lg">
-          <div className="logo h-[50px] w-[50px] rounded-full overflow-hidden">
-            <Img.Cover src="/images/logo.jpg" />
-          </div>
+          <Logo.Sm />
 
           <div className="flex-y-center gap-6 max-[800px]:hidden">
 
             <div className="flex-y-center gap-3 ">
                 {navs.map( (item, index) =>
-                  <div className="px-3 hover:text-blue-600 cursor-pointer" key={index} {...item.link}>{item.name}</div>
+                  <Link to={item.link} className="px-3 hover:text-blue-600 cursor-pointer" key={index} >{item.name}</Link>
                 )}
 
                 <div className="flex items-end px-3 relative group">
@@ -81,7 +79,7 @@ const Nav = () => {
           </div>
 
           {navs.map( (item, index) =>
-            <div className="p-4 px-12 border-b dark:border-neutral-800 hover:bg-blue-600 hover:text-white" key={index} {...item.link}>{item.name}</div>
+            <Link to={item.link} className="p-4 px-12 border-b dark:border-neutral-800 hover:bg-blue-600 hover:text-white" key={index} >{item.name}</Link>
           )}
             <div className="p-4 px-12 border-b dark:border-neutral-800 flex items-center justify-between hover:bg-blue-600 hover:text-white">
               <span>Cart</span>
